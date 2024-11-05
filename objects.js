@@ -13,10 +13,10 @@
 function createBook(title, author, publishedYear, genre) {
   // write your code here...
   return {
-    title: "JavaScript: The Definitive Guide",
-    author: "David Flanagan",
-    publishedYear: 2020,
-    genre: "Programming"
+    title: title,
+    author: author,
+    publishedYear: publishedYear,
+    genre: genre
   };
 }
 
@@ -33,7 +33,7 @@ const book = createBook();
  */
 function printBookTitleAndYear(book) {
   // write your code here...
-  return (book.title + " " + book.publishedYear);
+  return (book.title + " " + book["publishedYear"]);
 }
 
 /**
@@ -87,17 +87,9 @@ function updatePublishedYear(book, newYear) {
  */
 function addSecondAuthor(book, additionalAuthor) {
   // write your code here...
-  book.author = ["David Flanagan", additionalAuthor];
+  book.author = [book.author, additionalAuthor];
   return book;
 }
-<<<<<<< HEAD
-// 7) Using `addReviews` function modify `book` argument by adding a 'reviews' property to the 'book' argument, which will store an array of `review` objects. Each `review` object should have 'reviewer' and 'comment' properties. Start with one review: {reviewer: "Book Critic", comment: "A comprehensive guide to JavaScript."}.
-function addReviews(book, reviews) {
-  // write your code here...
-  book.reviews = reviews;
-  return book;
-=======
-
 /**
  * 🌶️🌶️🌶️ addReview
  *
@@ -112,7 +104,12 @@ function addReviews(book, reviews) {
  */
 function addReview(book, reviewer, comment) {
   // write your code here
->>>>>>> 691827895af895555673daa1e7726ca0ffcf65d6
+  if (Array.isArray(book.reviews))
+    book.reviews.push({ reviewer: reviewer, comment: comment });
+  else
+    book.reviews = [{ reviewer: reviewer, comment: comment }];
+
+  return book;
 }
 
 module.exports = {
